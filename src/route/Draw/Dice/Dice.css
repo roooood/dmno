@@ -1,0 +1,147 @@
+
+.domino,.domino *:before, .domino *:after {
+    box-sizing: content-box!important;
+}
+
+.domino {
+  display: flex;
+  margin: auto;
+  width: 8.5vw;
+  height: 4vw;
+  flex-direction: row;
+  border-radius: 8px;
+  background-color: #fff;;
+  border: 2px solid #4e4e4e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:3px;
+  min-width: 50px;
+  min-height: 20px;
+  max-width: 80px;
+  max-height: 37px;
+  overflow: hidden;
+}
+.domino>.domino-seperator{
+  width:1px;
+  height:80%;
+  border-left: 1px solid #b0b0b0;
+  margin: 3px 0;
+}
+.domino.vertical{
+  transition: all .5s;
+  height:8.5vw;
+  width: 4vw;
+  flex-direction: column;
+  min-width: 20px;
+  min-height: 50px;
+  max-width: 37px;
+  max-height: 80px;
+}
+.domino.vertical>.domino-seperator{
+  height:1px;
+  width:80%;
+  border-top: 1px solid #b0b0b0;
+  margin: 3px;
+}
+
+.my-dice .domino img{
+  filter: blur(1px);
+}
+.my-dice.active .domino img{
+  filter: blur(0px);
+}
+
+
+.domino:empty{
+  background-color: rgba(127, 245, 49, 0.671);
+}
+.active .domino{
+  /* border: 2px solid #4ec33d; */
+  cursor: pointer;
+  
+
+}
+.board-main .dice-holder{
+  position:absolute;
+}
+.my-dice {
+  margin:1px;
+  text-align: center
+}
+
+.react-draggable-dragged:not(.react-draggable-dragging){
+  transition: all .5s;
+}
+.dice-holder{
+  border-radius:5px;
+}
+.dice-holder:not(.vertical) .domino .cara-6{
+  transform: rotate(90deg);
+}
+.vertical.dice-holder .domino{
+  transform: rotate(90deg);
+  transform-origin:center center;
+}
+.endleft.dice-holder .domino{
+  transform-origin:top center;
+}
+.reverse.dice-holder .domino{
+  flex-direction: row-reverse;
+}
+.endxleft.dice-holder .domino{
+  transform-origin: 75% center
+}
+.endright.dice-holder .domino{
+  transform-origin:bottom center;
+}
+.endxright.dice-holder .domino{
+  transform-origin:25% center;
+}
+.rotate.dice-holder .domino{
+  transform: rotate(180deg);
+}
+.dice-holder:empty{
+  border:1px solid #999;
+  background: #333;
+}
+
+
+.fadeIn {
+    animation-duration: .4s;
+    animation-name: fadeAndScale;
+    animation-timing-function: cubic-bezier(.71,.55,.62,1.57);
+}
+@keyframes fadeAndScale {
+    from {
+        opacity: 0;
+        transform: scale(.9, .9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+}
+@keyframes fadeOutAndScale {
+      from {
+        opacity: 1;
+        transform: scale(1, 1);
+    
+      }
+      to {
+        opacity: 0;
+        transform: scale(.9, .9);
+    }
+
+}
+
+.fadeOut{
+    animation-duration: .4s;
+    animation-name: fadeOutAndScale;
+    animation-timing-function: cubic-bezier(.71,.55,.62,1.57);
+}
+
+.domino img{
+	height: 100%;
+	width: 100%;
+}
