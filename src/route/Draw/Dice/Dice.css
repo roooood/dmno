@@ -21,6 +21,7 @@
   max-width: 80px;
   max-height: 37px;
   overflow: hidden;
+  position: relative;
 }
 .domino>.domino-seperator{
   width:1px;
@@ -52,7 +53,14 @@
   filter: blur(0px);
 }
 
-
+.domino-fill{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
 .domino:empty{
   background-color: rgba(127, 245, 49, 0.671);
 }

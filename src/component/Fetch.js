@@ -53,7 +53,7 @@ function Http(page, data = {}, callBack) {
       .catch((error) => {
         if (!('line' in error)) {
           checkErr(error);
-          callBack(JSON.parse(error.request._response));
+          //callBack(JSON.parse(error.request._response));
         } else {
           callBack({});
         }

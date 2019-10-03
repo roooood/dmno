@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Login from '../route/Sign/Login';
+import { connect } from 'react-redux';
+import { User } from '../redux/action/user';
 
 class Header extends React.Component {
     constructor(props) {
@@ -11,6 +13,9 @@ class Header extends React.Component {
     }
     show() {
         this.setState({ login: true })
+    }
+    logout() {
+        this.props.dispatch(User(null));
     }
     hide() {
         this.setState({ login: false })
@@ -82,7 +87,12 @@ class Header extends React.Component {
                             </ul>
                         </div>
                         <div className="mr-auto ml-0 pl-2">
-                            <button className="btn" onClick={() => this.show()}>ثبت نام / ورود</button>
+                            {!this.props.user.isLogin &&
+                                <button className="btn" onClick={() => this.show()}>ثبت نام / ورود</button>
+                            }
+                            {this.props.user.isLogin &&
+                                <button className="btn" onClick={() => this.logout()}>خروج</button>
+                            }
                         </div>
                     </div>
                 </nav>
@@ -107,4 +117,4 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+export default connect(state => state)(Header);

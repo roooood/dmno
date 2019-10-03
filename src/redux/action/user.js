@@ -1,6 +1,6 @@
 export const USER_DATA = 'USER_DATA';
 
-export const setUserData = object => ({
+export const User = object => ({
   type: USER_DATA,
   data: object,
 });

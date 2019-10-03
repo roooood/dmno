@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import Dice from '../Dice/Dice';
-import * as F from '../../../Helper';
+import * as F from '../../../library/Helper';
 import autoBind from 'react-autobind';
 
 class Dashboard extends Component {

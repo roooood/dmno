@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Dashboard from './Dashboard';
 import Stack from './Stack';
 import Pick from './Pick';
-import * as F from '../../../Helper';
+import * as F from '../../../library/Helper';
 import autoBind from 'react-autobind';
 
 class Board extends Component {

@@ -87,12 +87,12 @@ class Stack extends Component {
                 if (this.nextLevel == 0) {
                     if (xright > width2) {
                         left = this.next += this.nextSign * (width2 + 2);
-                        this.down += width + 2;
-                        this.next += this.nextSign * (this.nextVertical ? (width - width4) : (width + 2));
+                        this.down += width + 4;
+                        this.next += this.nextSign * (this.nextVertical ? (width - width4) : (width + 4));
                     }
                     else {
                         top += width2 + 2;
-                        this.down += width + 2
+                        this.down += width + 4
                         left = this.next += this.nextVertical ? this.nextSign * width2 + 2 : 0;
                         this.next += this.nextVertical ? this.nextSign * (width4) : this.nextSign * (width2);
                     }
@@ -100,13 +100,13 @@ class Stack extends Component {
                 }
                 else if (this.nextLevel == 1) {
                     if (xright > width2) {
-                        this.down += width + 2;
+                        this.down += width + 4;
                         left = this.next += this.nextSign * (width2 + 2);
-                        this.next += this.nextSign * (this.nextVertical ? (width - width4) : (width + 2));
+                        this.next += this.nextSign * (this.nextVertical ? (width - width4) : (width + 4));
                     }
                     else {
                         top += width2 + 2;
-                        this.down += width + 2
+                        this.down += width + 4
                         left = this.next += this.nextVertical ? this.nextSign * width2 + 2 : 0;
                         this.next += this.nextSign * width2;
                     }
@@ -130,7 +130,7 @@ class Stack extends Component {
                         }
                     }
                 }
-                left = this.next += this.nextSign * (width + 2);
+                left = this.next += this.nextSign * (width + 4);
                 this.nextVertical = vertical;
             }
 
@@ -143,13 +143,13 @@ class Stack extends Component {
             if (leftEnd) {
                 if (this.prevLevel == 0) {
                     if (xleft > width2) {
-                        this.top -= width + 2;
+                        this.top -= width + 4;
                         left = this.prev += this.prevSign * (width2 + 2);
-                        this.prev += this.prevSign * (this.prevVertical ? (width - width4) : (width + 2));
+                        this.prev += this.prevSign * (this.prevVertical ? (width - width4) : (width + 4));
                     }
                     else {
                         top -= width2 + 2;
-                        this.top -= width + 2
+                        this.top -= width + 4
                         left = this.prev += this.prevVertical ? this.prevSign * width2 + 2 : 0;
                         this.prev += this.prevSign * width2;
                     }
@@ -157,13 +157,13 @@ class Stack extends Component {
                 }
                 else if (this.prevLevel == 1) {
                     if (xleft > width2) {
-                        this.top -= width + 2;
+                        this.top -= width + 4;
                         left = this.prev += this.prevSign * (width2 + 2);
-                        this.prev += this.prevSign * (this.prevVertical ? (width - width4) : (width + 2));
+                        this.prev += this.prevSign * (this.prevVertical ? (width - width4) : (width + 4));
                     }
                     else {
                         top -= width2 + 2;
-                        this.top -= width + 2
+                        this.top -= width + 4
                         left = this.prev += this.prevVertical ? this.prevSign * width2 + 2 : 0;
                         this.prev += this.prevVertical ? this.prevSign * (width4) : this.prevSign * (width2);
                     }
@@ -187,7 +187,7 @@ class Stack extends Component {
                         }
                     }
                 }
-                left = this.prev += this.prevSign * (width + 2);
+                left = this.prev += this.prevSign * (width + 4);
                 this.prevVertical = vertical;
             }
 

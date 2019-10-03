@@ -4,7 +4,8 @@ import Leftside from '../../component/Leftside';
 import request from '../../component/Fetch';
 import Alert from 'react-bootstrap/Alert';
 import { connect } from 'react-redux';
-import setUserData from '../../redux/action/user';
+import { User } from '../../redux/action/user';
+
 let input = {
     name: 'نام',
     family: 'نام خانوادگی',
@@ -52,18 +53,17 @@ class Register extends Component {
         }
         if (message.length > 0) {
             this.setState({ message })
-            // return;
+            return;
         }
-        request('user/add', this.state.form, data => {
-            console.log('====================================');
-            console.log(data);
-            console.log('====================================');
+        request('user/register', this.state.form, res => {
             let message = [];
-            if (data.success) {
+            if (res.success) {
+                this.props.dispatch(User({ isLogin: true, ...res.data }));
+                this.props.history.push('/');
                 message.push({ type: 'success', text: 'ثبت نام با موفقیت انجام شد' })
             } else {
-                for (let i in data.errors) {
-                    message.push({ type: 'danger', text: input[i] + ' - ' + data.errors[i].join(' , ') })
+                for (let i in res.errors) {
+                    message.push({ type: 'danger', text: input[i] + ' - ' + res.errors[i].join(' , ') })
                 }
             }
             if (message.length > 0) {
