@@ -56,9 +56,14 @@
     justify-content: space-around;
 }
 .simi{
-    width:40px;
+    height:8.5vw;
+    width: 4vw;
+    flex-direction: column;
+    min-width: 20px;
+    min-height: 50px;
+    max-width: 37px;
+    max-height: 80px;
     margin:3px;
-    height:80px;
     border: 2px solid #4e4e4e;
     background: #acff53;
     border-radius: 8px;
@@ -66,5 +71,5 @@
 }
 .simi.empty{
     background: #cecece;
-    cursor:none;
+    cursor:unset;
 }

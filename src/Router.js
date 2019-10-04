@@ -9,6 +9,7 @@ import request from './component/Fetch';
 import Home from './route/Home/Home';
 import Draw from './route/Draw/Draw';
 import Register from './route/Sign/Register';
+import Withdraw from './route/Withdraw/Withdraw';
 
 class MyRouter extends React.Component {
     constructor(props) {
@@ -37,7 +38,8 @@ class MyRouter extends React.Component {
                     <Header />
                     <Route path="/" exact component={Home} />
                     <Route path="/draw" component={Draw} />
-                    <Route path="/Register" component={Register} />
+                    <Route path="/register" component={Register} />
+                    <Route path="/withdraw" component={Withdraw} />
                     <Footer />
                 </Router>
             </div>

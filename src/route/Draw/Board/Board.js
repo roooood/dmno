@@ -4,6 +4,7 @@ import Stack from './Stack';
 import Pick from './Pick';
 import * as F from '../../../library/Helper';
 import autoBind from 'react-autobind';
+import Badge from 'react-bootstrap/Badge';
 
 class Board extends Component {
     constructor(props) {
@@ -105,13 +106,23 @@ class Board extends Component {
                                         </div>
                                         <div class="nav-link">
                                             پورسانت
-                                        <p>5%<i class="fas fa-coins pr-2"></i></p>
+                                        <p>{state.setting.commission || 0}%<i class="fas fa-coins pr-2"></i></p>
                                         </div>
                                         <div class="nav-link">
-                                            <img src={require("../../../assets/img/female.jpg")} />
+                                            <div style={{ position: 'relative' }}>
+                                                <img src={require("../../../assets/img/male.jpg")} />
+                                                {('1' in state.players && 'point' in state.players['1']) &&
+                                                    <Badge variant="info" className="rate">{state.players['1'].point}</Badge>
+                                                }
+                                            </div>
                                             <p>{'1' in state.players ? state.players['1'].name : '-'}</p>
                                             <p>VS</p>
-                                            <img src={require("../../../assets/img/male.jpg")} />
+                                            <div style={{ position: 'relative' }}>
+                                                <img src={require("../../../assets/img/male.jpg")} />
+                                                {('2' in state.players && 'point' in state.players['2']) &&
+                                                    <Badge variant="info" className="rate">{state.players['2'].point}</Badge>
+                                                }
+                                            </div>
                                             <p>{'2' in state.players ? state.players['2'].name : '-'}</p>
                                         </div>
                                     </div>
@@ -146,12 +157,22 @@ class Board extends Component {
                                         </div>
                                         <div class="users">
                                             <div class="user">
-                                                <img src={require("../../../assets/img/female.jpg")} />
+                                                <div style={{ position: 'relative' }}>
+                                                    <img src={require("../../../assets/img/male.jpg")} />
+                                                    {('1' in state.players && 'point' in state.players['1']) &&
+                                                        <Badge variant="info" className="rate">{state.players['1'].point}</Badge>
+                                                    }
+                                                </div>
                                                 <p>{'1' in state.players ? state.players['1'].name : '-'}</p>
                                             </div>
                                             <span>VS</span>
                                             <div class="user">
-                                                <img src={require("../../../assets/img/male.jpg")} />
+                                                <div style={{ position: 'relative' }}>
+                                                    <img src={require("../../../assets/img/male.jpg")} />
+                                                    {('2' in state.players && 'point' in state.players['2']) &&
+                                                        <Badge variant="info" className="rate">{state.players['2'].point}</Badge>
+                                                    }
+                                                </div>
                                                 <p>{'2' in state.players ? state.players['2'].name : '-'}</p>
                                             </div>
                                         </div>

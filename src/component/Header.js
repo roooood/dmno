@@ -108,10 +108,10 @@ class Header extends React.Component {
                                     <ul class="navbar-nav">
                                         <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav}>&times;</a>
                                         <li class="nav-item active">
-                                            <a class="nav-link" href="#"><i class="fas fa-home"></i>صفحه نخست<span class="sr-only">(current)</span></a>
+                                            <Link className="nav-link" to="/"><i className="fas fa-home"></i>صفحه نخست<span className="sr-only">(current)</span></Link>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#"><i class="fas fa-credit-card"></i>پرداخت آنلاین</a>
+                                            <Link className="nav-link" to="/withdraw"><i className="fas fa-credit-card"></i>پرداخت آنلاین</Link>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#"><i class="fas fa-money-bill"></i>مدیریت مالی</a>
@@ -160,7 +160,7 @@ class Header extends React.Component {
                                     </div>
                                 </div>
                                 <div class="col-6 text-left">
-                                    <button class="btn"><i class="fas fa-money-bill-alt"></i>افزایش اعتبار</button>
+                                    <Link className="nav-link" to="/withdraw"> <button class="btn"><i class="fas fa-money-bill-alt"></i>افزایش اعتبار</button></Link>
                                 </div>
                             </div>
                             <div class="custom-btns">

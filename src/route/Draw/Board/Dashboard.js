@@ -167,6 +167,10 @@ class Dashboard extends Component {
 
 
         setTimeout(() => {
+            let empty = document.querySelector(".is-null");
+            if (empty) {
+                empty.classList.add('fade-out')
+            }
             this.props.Game.send({
                 stack:
                     { number: dice.number, index: receiving[1] }

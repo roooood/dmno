@@ -13,7 +13,7 @@ const dice = (props) => {
   let number = props.number;
   let cls = 'vertical' in props ? 'vertical' : '';
   return (
-    <div className={"domino " + cls}>
+    <div className={"domino " + cls + (props.isNull ? " is-null" : "")}>
       {props.isNull != true &&
         <>
           <img src={domino[number[0]]} />

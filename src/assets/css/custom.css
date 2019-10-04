@@ -1323,3 +1323,8 @@ footer .col-12{
     color: #9e0b0f !important;
     padding: .5rem .75rem;
 }
+
+.rate{
+    position: absolute;
+    right: 0;
+}

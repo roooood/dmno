@@ -84,9 +84,6 @@
 .dice-holder{
   border-radius:5px;
 }
-.dice-holder:not(.vertical) .domino .cara-6{
-  transform: rotate(90deg);
-}
 .vertical.dice-holder .domino{
   transform: rotate(90deg);
   transform-origin:center center;

@@ -43,6 +43,7 @@ class App extends React.Component {
       return (
         <Board
           state={{
+            setting: {},
             ...this.state,
             // table: {},
             // stack: [{ number: [1, 2], index: 0 }, { number: [2, 3], index: 1 }]
