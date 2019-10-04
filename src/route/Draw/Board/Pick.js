@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import autoBind from 'react-autobind';
 
 class Create extends Component {
     constructor(props) {
@@ -7,9 +8,7 @@ class Create extends Component {
         this.state = {
             show: false,
         };
-        this.show = this.show.bind(this)
-        this.hide = this.hide.bind(this)
-        this.pick = this.pick.bind(this)
+        autoBind(this);
     }
 
     show() {

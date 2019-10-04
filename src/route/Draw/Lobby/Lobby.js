@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Create from './Create';
+import { connect } from 'react-redux';
+import autoBind from 'react-autobind';
 
 class Lobby extends React.Component {
     constructor(props) {
@@ -7,8 +9,7 @@ class Lobby extends React.Component {
         this.state = {
             rooms: []
         };
-        this.userKey = window.location.pathname.replace('/', '') || 1;
-        this.getTableList = this.getTableList.bind(this);
+        autoBind(this);
     }
     componentDidMount() {
         if (this.props.Game.isConnect) {
@@ -20,7 +21,7 @@ class Lobby extends React.Component {
         }
     }
     joinTable(id) {
-        this.props.Game.join(id, { key: this.userKey });
+        this.props.Game.join(id, { key: this.props.user.token });
     }
     getTableList() {
         this.props.Game.getAvailableRooms((rooms) => {
@@ -39,7 +40,7 @@ class Lobby extends React.Component {
     render() {
         return (
             <div class="container">
-                <Create key={this.userKey} Game={this.props.Game} ref={(ref) => this.create = ref} />
+                <Create Game={this.props.Game} token={this.props.user.token} ref={(ref) => this.create = ref} />
                 <div class="panel">
                     <div class="row">
                         <div class="col-md-9">
@@ -53,7 +54,7 @@ class Lobby extends React.Component {
                                 <div class="nav-link">نمایش بر اساس :</div>
                                 <div class="nav-link">
                                     پاداش میز
-                        <select name="" id="miz">
+                                    <select name="" id="miz">
                                         <option value="">کمتر از 1000</option>
                                         <option value="">1000 تا 5000</option>
                                         <option value="">5000 تا 10.000</option>
@@ -136,5 +137,4 @@ class Lobby extends React.Component {
         );
     }
 }
-
-export default Lobby;
+export default connect(state => state)(Lobby);

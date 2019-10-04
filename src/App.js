@@ -12,9 +12,7 @@ class App extends React.Component {
 
     };
   }
-  componentDidMount() {
 
-  }
   renderLoading() {
     return null;
   }

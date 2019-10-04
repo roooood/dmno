@@ -7,6 +7,11 @@ body{
     font-family: IRANSans !important;
     overflow-x: hidden;
     background: #1e1e1e url("../img/pattern.png");
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none;
+     -khtml-user-select: none; 
+       -moz-user-select: none;
+            user-select: none; 
 }
 img {
   -webkit-user-drag: none;
@@ -104,10 +109,10 @@ header a:hover{
 .navbar-expand-lg .navbar-nav .nav-link{
     color: #fff;
     margin-top: 12px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     padding-right: unset !important;
-    padding: 0.6rem 14px !important;
+    padding: 0.6rem 10px !important;
     position: relative;
 }
 .navbar-nav .nav-link:before{
@@ -123,6 +128,7 @@ header a:hover{
 }
 .navbar-nav .nav-link i{
     padding-left: 3px;
+    color: #c8c4c4;
 }
 .navbar-nav .nav-link:hover:before{
     opacity: 1;

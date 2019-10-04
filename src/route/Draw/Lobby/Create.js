@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import { connect } from 'react-redux';
+import autoBind from 'react-autobind';
 
 class Create extends Component {
     constructor(props) {
@@ -12,8 +14,7 @@ class Create extends Component {
                 bet: 1000,
             }
         };
-        this.show = this.show.bind(this)
-        this.hide = this.hide.bind(this)
+        autoBind(this);
     }
     changeVal(name, e) {
         let val = e.target.value;
@@ -26,7 +27,7 @@ class Create extends Component {
         this.setState({ show: false })
     }
     createTable() {
-        this.props.Game.join('domino', { create: true, key: this.props.key, ...this.state.form });
+        this.props.Game.join('domino', { create: true, key: this.props.token, ...this.state.form });
     }
     render() {
         return (

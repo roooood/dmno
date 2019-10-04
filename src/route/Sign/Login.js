@@ -41,9 +41,10 @@ class Login extends Component {
         }
         request('user/login', this.state.form, res => {
             let message = [];
+            console.log(res)
             if (res.success) {
                 this.props.dispatch(User({ isLogin: true, ...res.data }));
-                this.props.history.push('/logo');
+                this.props.parent.hide();
                 message.push({ type: 'success', text: 'ورود با موفقیت' })
             } else {
                 for (let i in res.errors) {
