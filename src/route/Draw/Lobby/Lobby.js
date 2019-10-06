@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Create from './Create';
 import { connect } from 'react-redux';
 import autoBind from 'react-autobind';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+import * as F from '../../../library/Helper';
 
 class Lobby extends React.Component {
     constructor(props) {
@@ -25,6 +28,7 @@ class Lobby extends React.Component {
     }
     getTableList() {
         this.props.Game.getAvailableRooms((rooms) => {
+            console.log(rooms)
             this.setState({ rooms });
             this.counter++;
             if (this.counter > this.limit) {
@@ -88,7 +92,7 @@ class Lobby extends React.Component {
                                                     <td>{room.metadata.name}</td>
                                                     <td>{room.metadata.bet}<i class="fas fa-coins pr-2"></i></td>
                                                     <td>{room.metadata.point}</td>
-                                                    <td>{room.metadata.ready == 2 ? room.metadata.p1 + ' , ' + room.metadata.p1 : room.metadata.p1}</td>
+                                                    <td>{room.metadata.ready == 2 ? room.metadata.p1 + ' , ' + room.metadata.p2 : room.metadata.p1}</td>
                                                     <td>{room.metadata.ready == 2 ? 'در حال بازی' : 'در حال انتظار'}</td>
                                                     <td>{room.metadata.ready == 2 ? <i class="fas fa-play"></i> : <i class="fas fa-spinner waiting"></i>}</td>
                                                 </tr>
@@ -100,36 +104,38 @@ class Lobby extends React.Component {
                             </div>
                         </div>
                         <div class="col-md-3 mb-3 mt-5">
-                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#playing" role="tab">در حال بازی</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#waiting" role="tab">در حال انتظار</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="playing" role="tabpanel">
+                            <Tabs defaultActiveKey="profile" className="nav nav-tabs nav-justified">
+                                <Tab eventKey="home" title="در حال بازی">
                                     <ul>
-                                        <li>
-                                            10.000<i class="fas fa-coins pr-2"></i>
-                                            <p>تاپ هیرو و یار دبستانی در حال بازی</p>
-                                        </li>
-
+                                        {this.state.rooms.map(room => {
+                                            if (room.metadata.ready == 2)
+                                                return (
+                                                    <li>
+                                                        {room.metadata.bet}<i class="fas fa-coins pr-2"></i>
+                                                        <p> {room.metadata.p1 + ' , ' + room.metadata.p2}</p>
+                                                    </li>
+                                                )
+                                        })
+                                        }
                                     </ul>
-                                    <button class="btn">بازیکن آنلاین<br />256</button>
-                                </div>
-                                <div class="tab-pane fade" id="waiting" aria-labelledby="profile-tab">
+                                    <button class="btn">بازیکن آنلاین<br />{F.sum(this.state.rooms, 'clients')}</button>
+                                </Tab>
+                                <Tab eventKey="profile" title="در حال انتظار">
                                     <ul>
-                                        <li>
-                                            10.000<i class="fas fa-coins pr-2"></i>
-                                            <p>تاپ هیرو و یار دبستانی در حال انتظار</p>
-                                        </li>
-
+                                        {this.state.rooms.map(room => {
+                                            if (room.metadata.ready != 2)
+                                                return (
+                                                    <li>
+                                                        {room.metadata.bet}<i class="fas fa-coins pr-2"></i>
+                                                        <p> {room.metadata.p1}</p>
+                                                    </li>
+                                                )
+                                        })
+                                        }
                                     </ul>
-                                    <button class="btn">بازیکن آنلاین<br />256</button>
-                                </div>
-                            </div>
+                                    <button class="btn">بازیکن آنلاین<br />{F.sum(this.state.rooms, 'clients')}</button>
+                                </Tab>
+                            </Tabs>
                         </div>
                     </div>
                 </div>

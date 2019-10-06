@@ -3,11 +3,18 @@ import { Link } from 'react-router-dom';
 import Swiper from 'swiper';
 import Leftside from '../../component/Leftside';
 import 'swiper/dist/css/swiper.min.css';
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+import request from '../../component/Fetch';
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            win: [],
+            lose: [],
+            total: [],
+        };
     }
     componentDidMount() {
         var swiper = new Swiper('.swiper-container', {
@@ -23,6 +30,11 @@ class Home extends React.Component {
                 disableOnInteraction: false,
             }
         });
+        request('info/tops', res => {
+            if ('win' in res) {
+                this.setState(res)
+            }
+        })
     }
     render() {
         return (
@@ -61,76 +73,41 @@ class Home extends React.Component {
                         </div>
                         <div className="row">
                             <div className="col-md-5 mb-3">
-                                <ul className="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                                    <li className="nav-item">
-                                        <a className="nav-link active" data-toggle="tab" href="#games" role="tab">بیشترین بازی</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" data-toggle="tab" href="#win" role="tab">بیشترین برد</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" data-toggle="tab" href="#loss" role="tab">بیشترین باخت</a>
-                                    </li>
-                                </ul>
-                                <div className="tab-content content-players" id="myTabContent">
-                                    <div className="tab-pane fade show active" id="games" role="tabpanel">
+                                <Tabs defaultActiveKey="profile" className="nav nav-tabs nav-justified">
+                                    <Tab eventKey="home" title="بیشترین بازی">
                                         <div className="player">
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
+                                            {
+                                                this.state.total.map(item => {
+                                                    return (
+                                                        <a href="#">{item.name}</a>
+                                                    )
+                                                })
+                                            }
                                         </div>
-                                    </div>
-                                    <div className="tab-pane fade" id="win" role="tabpanel">
+                                    </Tab>
+                                    <Tab eventKey="profile" title="بیشترین برد">
                                         <div className="player">
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
+                                            {
+                                                this.state.win.map(item => {
+                                                    return (
+                                                        <a href="#">{item.name}</a>
+                                                    )
+                                                })
+                                            }
                                         </div>
-                                    </div>
-                                    <div className="tab-pane fade" id="loss" role="tabpanel">
+                                    </Tab>
+                                    <Tab eventKey="contact" title="بیشترین باخت" >
                                         <div className="player">
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
-                                            <a href="">نام کاربری</a>
+                                            {
+                                                this.state.lose.map(item => {
+                                                    return (
+                                                        <a href="#">{item.name}</a>
+                                                    )
+                                                })
+                                            }
                                         </div>
-                                    </div>
-                                </div>
+                                    </Tab>
+                                </Tabs>
                             </div>
                             <div className="col-md-7 mb-3">
                                 <div className="start mb-2">

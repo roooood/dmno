@@ -6,6 +6,7 @@ import * as F from '../../../library/Helper';
 import autoBind from 'react-autobind';
 import Badge from 'react-bootstrap/Badge';
 
+
 class Board extends Component {
     constructor(props) {
         super(props);

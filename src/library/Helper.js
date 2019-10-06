@@ -9,6 +9,13 @@ export function clone(arr) {
     }
     return newObj;
 }
+export function sum(arr, prop) {
+    let total = 0, i;
+    for (i in arr) {
+        total += arr[i][prop];
+    }
+    return total
+}
 export function toMoney(amount) {
     if (typeof amount == 'undefined' || amount == null)
         return '0';
