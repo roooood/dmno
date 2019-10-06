@@ -10,12 +10,20 @@ class Stack extends Component {
         this.state = {
             load: false
         };
+        this.timer = null;
         autoBind(this);
     }
     componentDidMount() {
-        window.addEventListener("resize", this.onResize);
+        window.addEventListener("resize", this.debounce(this.onResize, 200));
         this.onResize();
         this.props.Game.register('dices', this.myDice);
+    }
+    debounce(func, time) {
+        time = time || 100;
+        return (event) => {
+            if (this.timer) clearTimeout(this.timer);
+            this.timer = setTimeout(func, time, event);
+        };
     }
     onResize() {
         let board = document.querySelector(".board-main");
@@ -25,6 +33,8 @@ class Stack extends Component {
             _dice.width = domino.clientHeight > domino.clientWidth ? domino.clientHeight : domino.clientWidth;
             _dice.height = domino.clientHeight < domino.clientWidth ? domino.clientHeight : domino.clientWidth;
             _table = { width: board.clientWidth, height: board.clientHeight };
+            // _dice.width = _dice.width * 3 / 4;
+            // _dice.height = _dice.height * 3 / 4;
             this.setState({
                 dice: _dice,
                 top: (_table.height / 2) - (_dice.height / 2),
@@ -92,13 +102,13 @@ class Stack extends Component {
                         track.push('x');
                         top -= this.nextSign * 3;
                         left = this.next += this.nextSign * (width2);
-                        this.down += width + 2;
+                        this.down += width + 6;
                         this.next += this.nextSign * (this.nextVertical ? (width - width4) : (width + 4));
                     }
                     else {
                         track.push('t');
                         top += width2;
-                        this.down += width + 4
+                        this.down += width + 6
                         left = this.next += this.nextVertical ? this.nextSign * width2 + 2 : 0;
                         this.next += this.nextVertical ? this.nextSign * (width4) : this.nextSign * (width2);
                     }
@@ -107,14 +117,14 @@ class Stack extends Component {
                 else if (this.nextLevel == 1) {
                     if (xright > width2) {
                         track.push('x');
-                        this.down += width + 4;
+                        this.down += width + 6;
                         left = this.next += this.nextSign * (width2 + 2);
                         this.next += this.nextSign * (this.nextVertical ? (width - width4) : (width + 4));
                     }
                     else {
                         track.push('t');
                         top += width2 + 2;
-                        this.down += width + 4
+                        this.down += width + 6
                         left = this.next += this.nextVertical ? this.nextSign * width2 + 2 : 0;
                         this.next += this.nextSign * width2;
                     }
@@ -161,14 +171,14 @@ class Stack extends Component {
                     if (xleft > width2) {
                         track.push('x');
                         top -= this.prevSign * 3;
-                        this.top -= width;
+                        this.top -= width + 6;
                         left = this.prev += this.prevSign * (width2 + 2);
                         this.prev += this.prevSign * (this.prevVertical ? (width - width4) : (width + 4));
                     }
                     else {
                         track.push('d');
                         top -= width2;
-                        this.top -= width + 4
+                        this.top -= width + 6
                         left = this.prev += this.prevVertical ? this.prevSign * width2 + 2 : 0;
                         this.prev += this.prevSign * width2;
                     }
@@ -184,7 +194,7 @@ class Stack extends Component {
                     else {
                         track.push('d');
                         top -= width2 + 2;
-                        this.top -= width + 4
+                        this.top -= width + 6
                         left = this.prev += this.prevVertical ? this.prevSign * width2 + 2 : 0;
                         this.prev += this.prevVertical ? this.prevSign * (width4) : this.prevSign * (width2);
                     }
@@ -213,7 +223,7 @@ class Stack extends Component {
                         }
                     }
                 }
-                top -= this.prevSign * 3;
+                // top -= this.prevSign * 3;
                 left = this.prev += this.prevSign * (width + 4);
                 this.prevVertical = vertical;
             }
@@ -229,13 +239,13 @@ class Stack extends Component {
 
         style.left = left;
         style.top = top;
+
         if (sign < 0 && !vertical) {
             clss.push('reverse')
         }
         clss.push(track.join(''))
-        console.log('====================================');
-        console.log(track.join(''));
-        console.log('====================================');
+
+        //style={{ width: this.state.dice.width, height: this.state.dice.height }}
         return (
             <div
                 key={i}

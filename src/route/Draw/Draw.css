@@ -57,11 +57,11 @@
 }
 .simi{
     height:8.5vw;
-    width: 4vw;
+    width: 5vw;
     flex-direction: column;
     min-width: 20px;
     min-height: 50px;
-    max-width: 37px;
+    max-width: 40px;
     max-height: 80px;
     margin:3px;
     border: 2px solid #4e4e4e;

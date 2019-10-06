@@ -28,7 +28,6 @@ class Lobby extends React.Component {
     }
     getTableList() {
         this.props.Game.getAvailableRooms((rooms) => {
-            console.log(rooms)
             this.setState({ rooms });
             this.counter++;
             if (this.counter > this.limit) {

@@ -24,7 +24,7 @@ class Board extends Component {
             for (let i in nextProps.state.players) {
                 let j = nextProps.state.players[i];
                 if (j.id == this.user.id) {
-                    this.state.mySit = j.sit;
+                    this.setState({ mySit: j.sit });
                 }
             }
         }
@@ -67,11 +67,13 @@ class Board extends Component {
     onSelect(i) {
         for (let r of this.state.receiveable) {
             if (r[0] == i) {
-                this.setState({ receiveable: [r] });
+                this.setState({ receiveable: [r] }, () => {
+                    this.dashboard.selected();
+                });
                 break;
             }
         }
-        this.dashboard.selected();
+
     }
     handleStop(success = false) {
         if (success)

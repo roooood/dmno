@@ -2,6 +2,7 @@ import React from 'react';
 import Game from './Game';
 import Board from './Board/Board';
 import Lobby from './Lobby/Lobby';
+import autoBind from 'react-autobind';
 
 import './Draw.css';
 
@@ -17,7 +18,7 @@ class App extends React.Component {
       simi: [],
     };
     this.limit = 10;
-    this.gotoTable = this.gotoTable.bind(this);
+    autoBind(this);
 
   }
   gotoTable(data) {
@@ -30,8 +31,11 @@ class App extends React.Component {
   componentDidMount() {
     Game.reset();
     Game.register('welcome', this.gotoTable);
+    Game.register('leave', this.gotoLobby);
   }
-
+  gotoLobby() {
+    this.setState({ route: 'lobby' })
+  }
   render() {
     if (this.state.route == 'lobby')
       return (

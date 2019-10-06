@@ -24,6 +24,7 @@ class Dashboard extends Component {
         this.reRender();
     }
     myTurn(sit) {
+        console.log(sit, this.mySit)
         this.turn = sit;
         this.reRender();
     }
@@ -42,16 +43,9 @@ class Dashboard extends Component {
         return this.force;
     }
     componentWillReceiveProps(nextProps) {
-        // let f = F.clone(this.props.moveable), n = F.clone(nextProps.moveable);
-        // if (!(f.length === n.length && f.sort().every((v, i) => v === n.sort()[i]))) {
-        //     this.reRender();
-        // }
-
         if (this.mySit == null && nextProps.mySit != null) {
             this.mySit = nextProps.mySit;
         }
-
-
     }
     revert() {
 
@@ -93,7 +87,6 @@ class Dashboard extends Component {
 
         let child = el.querySelector('.domino');
         let receiveable, target, distance, selected, max = 99999, receiving, domino, tmp;
-
         for (receiveable of this.props.receiveable) {
             tmp = document.querySelector('.list-dice' + receiveable[0]);
             domino = tmp.querySelector('.domino');
@@ -201,7 +194,7 @@ class Dashboard extends Component {
                             defaultPosition={{ x: 0, y: 0 }}
                             // bounds={{ bottom: 0, top: -450, left: -400, right: 300 }}
                             disabled={!active}
-                            // onMouseDown={() => this.handleStart(item, i)}
+                            onMouseDown={() => this.handleStart(item, i)}
                             onStart={() => this.handleStart(item, i)}
                             onDrag={this.handleDrag}
                             onStop={this.handleStop}>
